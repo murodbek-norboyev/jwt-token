@@ -7,7 +7,11 @@ export default createStore({
   state: {
     user: null
   },
-  getters: {},
+  getters: {
+    loggedIn (state) {
+      return !!state.user
+    }
+  },
   mutations: {
     SET_USER_DATA(state, userData) {
       state.user = userData
@@ -21,6 +25,17 @@ export default createStore({
     }, credintials) {
       return axios
         .post('//localhost:3000/register', credintials)
+        .then(({
+          data
+        }) => {
+          commit('SET_USER_DATA', data)
+        })
+    },
+    login({
+      commit
+    }, credintials) {
+      return axios
+        .post('//localhost:3000/login', credintials)
         .then(({
           data
         }) => {

@@ -2,13 +2,13 @@
   <div>
     <form @submit.prevent="register">
       <label for="name"> Name: </label>
-      <input v-model="name" type="text" name="name" value />
+      <input v-model="name" type="text" name="name" autocomplete="off" />
 
       <label for="email"> Email: </label>
-      <input v-model="email" type="email" name="email" value />
+      <input v-model="email" type="email" name="email" autocomplete="off" />
 
       <label for="password"> Password: </label>
-      <input v-model="password" type="password" name="password" value />
+      <input v-model="password" type="password" name="password" autocomplete="off" />
 
       <button type="submit" name="button">Register</button>
       <router-link to="/login"> Already have an account? Login. </router-link>
