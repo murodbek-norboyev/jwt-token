@@ -1,24 +1,31 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link>
-    <router-link to="/dashboard">Dashboard</router-link>
+    <router-link v-if="loggedIn" to="/dashboard">Dashboard</router-link>
     <router-link v-if="!loggedIn" to="/login" class="button">Login</router-link>
+    <button v-else type="button" class="logoutButton" @click="logout">Logout</button>
   </div>
 </template>
     
 <script>
-import { authComputed } from '../store/helpers.js'
+import { authComputed } from "../store/helpers.js";
 export default {
   computed: {
-    ...authComputed
-  }
+    ...authComputed,
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
 };
 </script>
     
-    <style lang="scss" scoped>
+<style lang="scss" scope>
 #nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   min-height: 50px;
   padding: 0.2em 1em;
   background: linear-gradient(to right, #16c0b0, #84cf6a);

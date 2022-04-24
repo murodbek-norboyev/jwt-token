@@ -17,6 +17,11 @@ export default createStore({
       state.user = userData
       localStorage.setItem('user', JSON.stringify(userData))
       axios.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`
+    },
+    CLEAR_USER_DATA(state) {
+      state.user = null
+      localStorage.removeItem('user')
+      location.reload()
     }
   },
   actions: {
@@ -41,6 +46,9 @@ export default createStore({
         }) => {
           commit('SET_USER_DATA', data)
         })
+    },
+    logout({ commit}) {
+      commit('CLEAR_USER_DATA')
     }
   },
   modules: {}
